@@ -1,0 +1,58 @@
+<div class="container">
+
+
+<div class="row" *ngIf="!noData" >
+  <div class="form-group col-md-4 my-5">
+    <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+  </div>
+  <div class="col-md-12">
+  <table class="table table-striped" >
+    <thead>
+      <tr>
+      <th (click)="toggle()" scope="col" [appSort]="employee" data-order="desc" data-name="employeeid">Employee Id <i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+      <th (click)="toggle()" scope="col" [appSort]="employee" data-order="desc" data-name="employeename">Employee Name <i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+      <th (click)="toggle()" scope="col" [appSort]="employee" data-order="desc" data-name="designation">Designation <i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+      <th (click)="toggle()" scope="col" [appSort]="employee" data-order="desc" data-name="email">Email <i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+      <th (click)="toggle()" scope="col" [appSort]="employee" data-order="desc" data-name="primaryphone">Primary Phone <i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+      <th (click)="toggle()" scope="col" [appSort]="employee" data-order="desc" data-name="secondaryphone">Secondary Phone <i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+      <th (click)="toggle()" scope="col" [appSort]="employee" data-order="desc" data-name="project">Project <i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+      <th (click)="toggle()" scope="col" [appSort]="employee" data-order="desc" data-name="reportingmanager">Reporting Manager <i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+      <th (click)="toggle()" scope="col" [appSort]="employee" data-order="desc" data-name="dateofjoining">Date of Joining<i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+      <th (click)="toggle()" scope="col" [appSort]="employee" data-order="desc" data-name="primaryskills">Primary Skills<i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+      <th (click)="toggle()" scope="col" [appSort]="employee" data-order="desc" data-name="planneddate">Planned Date<i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+      <th (click)="toggle()" scope="col" [appSort]="employee" data-order="desc" data-name="feedbackdate">Feedback Date<i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+      <th (click)="toggle()" scope="col" [appSort]="employee" data-order="desc" data-name="feedback">Feedback<i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let item of employee  | filter:term |  paginate: { itemsPerPage: 5, currentPage: p };let i=index">
+       <td>{{item.employeeid}}</td>
+       <td>{{item.employeename}}</td>
+       <td>{{item.designation}}</td>
+       <td>{{item.email}}</td>
+       <td>{{item.primaryphone}}</td>
+       <td>{{item.secondaryphone}}</td>
+       <td>{{item.project}}</td>
+       <td>{{item.reportingmanager}}</td>
+       <td>{{item.dateofjoining | date}}</td>
+       <td>{{item.primaryskills}}</td>
+       <td >{{ item.employeefeedbacks.length !== 0 ? item.employeefeedbacks[0].planneddate : "Not Planned"  }}</td>
+      <td >{{ item.employeefeedbacks.length !== 0 ? item.employeefeedbacks[0].feedbackdate : "No Feedback"  }}</td>
+      <td >{{ item.employeefeedbacks.length !== 0 ? item.employeefeedbacks[0].feedback : "No Feedback"  }}</td>
+       <!-- <td>{{ item[i].employeefeedbacks[0].planneddate }}</td> -->
+       <!-- <td>{{item[i].employeefeedbacks[0].feedbackdate }}</td> -->
+       <!-- <td>{{item[i].employeefeedbacks[0].feedback  }}</td> -->
+       </tr>
+    </tbody>
+  </table>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+
+</div>
+<div class="row" *ngIf="noData">
+  <h2>No Data Available</h2>
+</div>
+
+
+</div>

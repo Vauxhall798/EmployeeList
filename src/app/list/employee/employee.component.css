@@ -1,0 +1,8 @@
+.row{
+
+  margin-top: 20px;
+}
+pagination-controls{
+  display: flex;
+  justify-content: center;
+}

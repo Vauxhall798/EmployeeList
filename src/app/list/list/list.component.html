@@ -1,0 +1,51 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">
+          menu
+      </mat-icon>
+      <mat-icon *ngIf="sidenav.opened">
+          close
+      </mat-icon>
+  </button>
+  <img class="logo" src="https://media-exp1.licdn.com/dms/image/C4D0BAQF71YnEjAYn3A/company-logo_200_200/0/1519894876948?e=2159024400&v=beta&t=KdzX9xWBVyFO4NydfUAgEqf1EIHxVz6kP4OtE3vKtPQ">Vuedata
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+
+      <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+
+      <h4 class="name">Arul Subramaniam</h4>
+      <p class="designation">Manager</p>
+
+      <mat-divider></mat-divider>
+
+      <button mat-button class="menu-button mb-2" (click)="feedback()">
+          <mat-icon>home</mat-icon>
+          <span>1:1 Feedback</span>
+      </button>
+      <button mat-button class="menu-button mb-2" (click)="resouces()">
+          <mat-icon>person</mat-icon>
+          <span style="font-size: small;">Resources Upload</span>
+      </button>
+      <button mat-button class="menu-button mb-2" (click)="employers()">
+          <mat-icon>person_pin</mat-icon>
+          <span>Employee List</span>
+      </button>
+
+      <mat-divider></mat-divider>
+
+      <button mat-button class="menu-button" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+      </button>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <div>
+
+          <router-outlet></router-outlet>
+
+      </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

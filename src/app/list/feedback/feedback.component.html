@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 mb-2">
+      <label for="month" class="form-label">Month</label>
+      <select name="month" id="month" class="form-select form-control" [(ngModel)]="month" (click)="SearchByMonth()" >
+        <option value="1" >1</option>
+        <option value="2" >2</option>
+        <option value="3" >3</option>
+        <option value="4"  >4</option>
+        <option value="5" >5</option>
+        <option value="6" >6</option>
+        <option value="7">7</option>
+        <option value="8" >8</option>
+        <option value="9" >9</option>
+        <option value="10"  >10</option>
+        <option value="11" >11</option>
+        <option value="12" >12</option>
+        <option value="All" >All</option>
+      </select>
+    </div>
+    <div class="col-md-2 mb-2">
+      <label for="year" class="form-label">Year</label>
+      <select name="year" id="year" class="form-select form-control" [(ngModel)]="year" (click)="SearchByYear()">
+        <option value="2022"  >2022</option>
+        <option value="2023" >2023</option>
+        <option value="2024" >2024</option>
+        <option value="2025" >2025</option>
+        <option value="All" >All</option>
+      </select>
+    </div>
+    <div class="col-md-2 mb-2">
+       <label for="limit" class="form-label">Limit</label>
+       <select name="limit" id="limit" class="form-select form-control" [(ngModel)]="limit" >
+         <option value="2">2</option>
+         <option value="3">3</option>
+         <option value="4">4</option>
+         <option value="5" >5</option>
+         <option value="6">6</option>
+         <option value="7">7</option>
+         <option value="8">8</option>
+         <option value="9">9</option>
+         <option value="10">10</option>
+       </select>
+    </div>
+    <div class="col-md-4 mb-2">
+      <br>
+      <button type="button" class="btn btn-success mt-1" (click)="Click()"  *ngIf="!MonthEnd" #child1>
+        {{initial}} Resource for 1:1
+      </button>
+    </div>
+
+    <div class="col-md-1 mb-2">
+      <br>
+      <button type="button" class="btn btn-success mt-1" (click)="Confirm()" *ngIf="!MonthEnd" #child2>
+        Confirm
+      </button>
+    </div>
+    <div class="col-md-1 mb-2">
+      <br>
+      <button type="button" class="btn btn-primary mt-1" (click)="Submit()">
+        Submit
+      </button>
+    </div>
+  </div>
+  <div class="row" *ngIf="show==3">
+  <div class="form-group col-md-3 mb-4">
+    <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+  </div>
+   <div class="col-md-12">
+    <table class="table table-striped"  >
+      <thead>
+        <tr>
+          <th (click)="toggle()" scope="col" [appSort]="itemsDetails" data-order="desc" data-name="employeeid">Employee Id<i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+          <th (click)="toggle()" scope="col" [appSort]="itemsDetails" data-order="desc" data-name="employeename">Employee Name<i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+          <th (click)="toggle()" scope="col" [appSort]="itemsDetails" data-order="desc" data-name="project">Project<i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+          <th (click)="toggle()" scope="col" [appSort]="itemsDetails" data-order="desc" data-name="reportingmanager">Reporting Manager<i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+          <th (click)="toggle()" scope="col" [appSort]="itemsDetails" data-order="desc" data-name="dateofjoining" >Planned Date<i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+          <th (click)="toggle()" scope="col"[appSort]="itemsDetails" data-order="desc" data-name="dateofjoining" >Feedback Date<i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+          <th (click)="toggle()" scope="col">Feedback<i *ngIf="updown" class="fas fa-angle-up" style="margin-left: 5px;"></i><i *ngIf="!updown" class="fas fa-angle-down" style="margin-left: 5px;"></i></th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of itemsDetails | filter:term |  paginate: { itemsPerPage: 5, currentPage: p };let i=index ">
+          <td name="empid" >{{item.employeeid}}</td>
+          <td name="empname">{{item.employeename}}</td>
+           <td name="project" >{{item.project}}</td>
+           <td name="reportingmanager" >{{item.reportingmanager}}</td>
+          <td>{{ planneddate }}</td>
+           <!-- <td *ngIf="Firsttime"></td> -->
+            <td >{{ item.employeefeedbacks.length !== 0 ? item.employeefeedbacks[0].feedbackdate : "No Feedback"  }}</td>
+          <td>
+            <div *ngIf="!isEdit" >{{item.employeefeedbacks.length !== 0 ? item.employeefeedbacks[0].feedback : "No Feedback Yet" }}</div>
+            <div [formGroup]="MyGroup" *ngIf="isEdit"><input type="text" [style.border.red]="MyGroup.controls['feedback'].invalid" formControlName="feedback" class="form-control" name="feedback" required [(ngModel)]="item.feedback"></div>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+    <!-- Modal -->
+
+</div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+   </div>
+
+
+  <div class="row" *ngIf="show==1">
+    <h2>
+      Please Choose Resources for 1:1 for this Month
+    </h2>
+  </div>
+  <div class="row" *ngIf="show==2">
+    <h2>No Data Available For the Given Month</h2>
+  </div>
+
+
+
+
+
+
+
+</div>
+<!-- <button (click)="MapFeedback()">Vishaal</button> -->

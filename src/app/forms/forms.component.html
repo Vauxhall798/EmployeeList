@@ -1,0 +1,41 @@
+<div class="container mt-5 p-3 box" style="max-width: 550px;background-color:lightblue">
+<h2 class="mb-5 text-center">Employee List Login</h2>
+
+<form [formGroup]="userForm"  novalidate>
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" formControlName="name" id="name" name="name">
+    <div *ngIf="getControl['name'].touched && getControl['name'].invalid" class="text-danger">
+      <div *ngIf="getControl['name'].errors?.['required']">Name is required.</div>
+      <div *ngIf="getControl['name'].errors?.['minlength']">Minimum 4 character are required.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" formControlName="email" id="email" name="email">
+    <div *ngIf="getControl['email'].touched && getControl['email'].invalid" class="text-danger">
+      <div *ngIf="getControl['email'].errors?.['required']">Email is required.</div>
+      <div *ngIf="getControl['email'].errors?.['email']">Email seems invalid.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="text" class="form-control" formControlName="phone" name="phone" id="phone" maxlength="10" onkeypress="return onlyNumberKey(event)">
+    <div *ngIf="getControl['phone'].touched && getControl['phone'].invalid" class="text-danger">
+      <div *ngIf="getControl['phone'].errors?.['required']">Phone is required.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" formControlName="password" id="password" name="password" >
+    <div *ngIf="getControl['password']?.touched && getControl['password'].invalid" class="text-danger">
+      <div *ngIf="getControl['password'].errors?.['required']">Password is required.</div>
+    </div>
+  </div>
+  <button class="btn btn-danger btn-block my-4" type="submit" (click)="login(userForm.value)" [disabled]="userForm.invalid">Login</button>
+</form>
+</div>

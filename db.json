@@ -1,0 +1,64 @@
+{"Employees" : [
+  {
+  "employeeid":"VD001",
+  "employeename":"Sathya",
+  "designation":"Head of Operations",
+  "email":"sathya@vuedata.in",
+  "primaryphone":"1234567890",
+  "secondaryphone":"1234567891",
+  "project":"Operations",
+  "reportingmanager":"Muru Ganesan",
+  "dateofjoining":"2014-01-01",
+  "primaryskills":"Administration"
+  },
+  {
+  "employeeid":"VD120",
+  "employeename":"Karthi",
+  "designation":"Developer",
+  "email":"karthi@vuedata.in",
+  "primaryphone":"1234567890",
+  "secondaryphone":"1234567891",
+  "project":"RTS",
+  "reportingmanager":"Arul",
+  "dateofjoining":"2019-01-01",
+  "primaryskills":"ReactJS, NodeJS, MySQL"
+  },
+  {
+  "employeeid":"VD121",
+  "employeename":"Vijay",
+  "designation":"Developer",
+  "email":"Vijay@vuedata.in",
+  "primaryphone":"1234567890",
+  "secondaryphone":"1234567891",
+  "project":"RTS",
+  "reportingmanager":"Arul",
+  "dateofjoining":"2020-05-01",
+  "primaryskills":"ReactJS"
+  },
+  {
+  "employeeid":"VD122",
+  "employeename":"Raman",
+  "designation":"Developer",
+  "email":"raman@vuedata.in",
+  "primaryphone":"1234567890",
+  "secondaryphone":"1234567891",
+  "project":"NEOU",
+  "reportingmanager":"Arul",
+  "dateofjoining":"2021-10-01",
+  "primaryskills":"ReactJS"
+  },
+  {
+  "employeeid":"VD123",
+  "employeename":"Vishal Arun",
+  "designation":"Developer",
+  "email":"vishal@vuedata.in",
+  "primaryphone":"1234567890",
+  "secondaryphone":"1234567891",
+  "project":"1091",
+  "reportingmanager":"Anu",
+  "dateofjoining":"2021-11-01",
+  "primaryskills":"Angular"
+  }
+  ]
+  }
+

@@ -87,7 +87,7 @@
           <td name="empname">{{item.employeename}}</td>
            <td name="project" >{{item.project}}</td>
            <td name="reportingmanager" >{{item.reportingmanager}}</td>
-          <td>{{ planneddate }}</td>
+          <td>{{ item.employeefeedbacks.length !== 0 ? item.employeefeedbacks[0].planneddate : "Not Planned" }}</td>
            <!-- <td *ngIf="Firsttime"></td> -->
             <td >{{ item.employeefeedbacks.length !== 0 ? item.employeefeedbacks[0].feedbackdate : "No Feedback"  }}</td>
           <td>

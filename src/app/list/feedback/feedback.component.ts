@@ -102,7 +102,7 @@ export class FeedbackComponent implements OnInit {
     this.http.get(`http://localhost:3001/api/v1/employeedetails/random/${this.limit}/year/${this.year}/month/${this.month}`).subscribe(
       (data:any)=>{
         this.itemsDetails=data
-        this.planneddate=`${this.year}-${this.month}-${this.currentDay}`
+        this.planneddate=`${this.year}-${this.month}-${this.firstDay}`
 
         console.log(data);
 

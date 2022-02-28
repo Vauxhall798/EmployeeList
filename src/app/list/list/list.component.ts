@@ -43,7 +43,7 @@ export class ListComponent implements OnInit {
   logout(){
     localStorage.removeItem('locked');
     localStorage.removeItem('Submitted');
-    localStorage.removeItem('limit');
+
     this.router.navigate(['/login'])
   }
 

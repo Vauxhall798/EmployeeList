@@ -3,14 +3,14 @@
 
 <form [formGroup]="userForm"  novalidate>
 
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" formControlName="name" id="name" name="name">
-    <div *ngIf="getControl['name'].touched && getControl['name'].invalid" class="text-danger">
-      <div *ngIf="getControl['name'].errors?.['required']">Name is required.</div>
-      <div *ngIf="getControl['name'].errors?.['minlength']">Minimum 4 character are required.</div>
-    </div>
-  </div>
+  <!-- <div class="form-group"> -->
+    <!-- <label for="name">Name</label> -->
+    <!-- <input type="text" class="form-control" formControlName="name" id="name" name="name"> -->
+    <!-- <div *ngIf="getControl['name'].touched && getControl['name'].invalid" class="text-danger"> -->
+      <!-- <div *ngIf="getControl['name'].errors?.['required']">Name is required.</div> -->
+      <!-- <div *ngIf="getControl['name'].errors?.['minlength']">Minimum 4 character are required.</div> -->
+    <!-- </div> -->
+  <!-- </div> -->
 
   <div class="form-group">
     <label for="email">Email</label>
@@ -21,13 +21,13 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="phone">Phone</label>
-    <input type="text" class="form-control" formControlName="phone" name="phone" id="phone" maxlength="10" onkeypress="return onlyNumberKey(event)">
-    <div *ngIf="getControl['phone'].touched && getControl['phone'].invalid" class="text-danger">
-      <div *ngIf="getControl['phone'].errors?.['required']">Phone is required.</div>
-    </div>
-  </div>
+  <!-- <div class="form-group"> -->
+    <!-- <label for="phone">Phone</label> -->
+    <!-- <input type="text" class="form-control" formControlName="phone" name="phone" id="phone" maxlength="10" onkeypress="return onlyNumberKey(event)"> -->
+    <!-- <div *ngIf="getControl['phone'].touched && getControl['phone'].invalid" class="text-danger"> -->
+      <!-- <div *ngIf="getControl['phone'].errors?.['required']">Phone is required.</div> -->
+    <!-- </div> -->
+  <!-- </div> -->
 
   <div class="form-group">
     <label for="password">Password</label>
@@ -39,3 +39,4 @@
   <button class="btn btn-danger btn-block my-4" type="submit" (click)="login(userForm.value)" [disabled]="userForm.invalid">Login</button>
 </form>
 </div>
+<!-- <div>{{userForm.value | json}}</div> -->

@@ -57,8 +57,10 @@ export class AuthServicesService {
     localStorage.setItem('token', token);
   }
 
-  login({ email, password,phone,name }: any): Observable<any> {
-    if (email === 'vishaal351@gmail.com' && password === 'Vishwa@351' && phone=='9087492024' && name=='Vishaal') {
+
+
+  login({ email, password }: any): Observable<any> {
+    if (email === 'vishaal351@gmail.com' && password === 'Vishwa@351' ) {
       this.setToken('abcdefghijklmnopqrstuvwxyz')
       return of({ name: 'Vishaal', email: 'vishaal351@gmail.com' });
     }

@@ -22,6 +22,15 @@ export class FeedbackComponent implements OnInit {
 
   dataSource = new MatTableDataSource()
 
+  p:any=1;
+  term!:string
+  currentDate = new Date();
+  lastDate = new Date(this.currentDate.getFullYear(),this.currentDate.getMonth() + 1, 0,23,59,59,999);
+
+   firstDay = 1;
+   lastDay = this.lastDate.getDate();
+   currentDay=this.currentDate.getDate();
+
 
 
   feedback!:string
@@ -30,7 +39,7 @@ export class FeedbackComponent implements OnInit {
   month:number=2;
   year:number=2022;
   MonthEnd=false;
-  planneddate=`${this.year}-${this.month}-23`
+  planneddate=`${this.year}-${this.month}-${this.currentDay}`
 
 
   updown:boolean=true
@@ -55,17 +64,11 @@ export class FeedbackComponent implements OnInit {
   // message="Please Choose Resources for 1:1 for this Month";
 
   itemsDetails:any
+  empDetails:any
 
   // employee$:Observable<Employees>=this.auth.getEmployeesWithEmpId("VD123");
 
-  p:any=1;
-  term!:string
-  currentDate = new Date();
-  lastDate = new Date(this.currentDate.getFullYear(),this.currentDate.getMonth() + 1, 0,23,59,59,999);
 
-   firstDay = 1;
-   lastDay = this.lastDate.getDate();
-   currentDay=this.currentDate.getDate();
    MyGroup:FormGroup=new FormGroup({
      "feedback":new FormControl([Validators.required])
    })
@@ -87,13 +90,19 @@ export class FeedbackComponent implements OnInit {
      this.itemsDetails=data;
    })
   }
+  SearchByLimit(){
+    console.log("YearClick")
+    this.http.get(`http://localhost:3001/api/v1/employeedetails/random/${this.limit}/year/${this.year}/month/${this.month}`).subscribe(data=>{
+      this.itemsDetails=data;
+    })
+  }
 
   Click(){
     console.log("clicked")
     this.http.get(`http://localhost:3001/api/v1/employeedetails/random/${this.limit}/year/${this.year}/month/${this.month}`).subscribe(
       (data:any)=>{
         this.itemsDetails=data
-        this.planneddate=`${this.year}-${this.month}-23`
+        this.planneddate=`${this.year}-${this.month}-${this.currentDay}`
 
         console.log(data);
 
@@ -221,6 +230,27 @@ export class FeedbackComponent implements OnInit {
 
   ngOnInit(): void {
 
+   /* if(!localStorage.getItem("locked")){
+     this.http.get(`http://localhost:3001/api/v1/employeedetails/random/${this.limit}/year/${this.year}/month/${this.month}`).subscribe(
+       (data:any)=>{this.itemsDetails=data
+
+       if(data.length===0){
+        console.log("Came");
+        this.initial="Choose";
+        this.show=1;
+      }
+      else if(data.length!==0) {
+      console.log("not")
+      this.show=3
+      this.isEdit=true;
+      this.initial="Refresh"
+      this.Firsttime=true
+    }
+
+    }
+     )
+    }*/
+
     if(localStorage.getItem("locked")){
       let Med
 
@@ -234,6 +264,7 @@ export class FeedbackComponent implements OnInit {
         (data:any)=>{
           this.itemsDetails=data
           console.log(data);
+
 
           // this.show=3
           if(data.length===0){
@@ -264,9 +295,9 @@ export class FeedbackComponent implements OnInit {
     console.log(this.currentDay);
     console.log(this.lastDay);
 
-    if(this.currentDay==this.lastDay){
-     this.MonthEnd=true;
-    }else if(localStorage.getItem("Submitted")){
+    // if(this.currentDay==this.lastDay){
+    //  this.MonthEnd=true;
+   if(localStorage.getItem("Submitted")){
       this.MonthEnd=true
     }
     if(this.currentDay==1){

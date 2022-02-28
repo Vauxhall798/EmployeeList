@@ -11,7 +11,4 @@ employeeid!:any;
   dateofjoining!: any;
   primaryskills!: string;
 
-  planneddate: string="";
-  feedbackdate: string="";
-  feedback: any='';
 }
